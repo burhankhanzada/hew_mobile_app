@@ -1,0 +1,74 @@
+workflows:
+  android-workflow:
+    name: Android Workflow
+
+    environment:
+      groups:
+        - github
+        - firebase
+
+    triggering:
+      events:
+        - tag
+
+      cancel_previous_builds: true
+
+      branch_patterns:
+        - pattern: '*'
+          include: true
+          source: true
+
+      tag_patterns:
+        - pattern: '*'
+          include: true
+
+    cache:
+      cache_paths:
+        - $FLUTTER_ROOT/.pub-cache
+        - $HOME/.gradle/caches
+
+    scripts:
+      - name: Print enviroment varaibles
+        script: bash scripts/print_enviroment_varaibles.sh
+
+      - name: Setup local.properties
+        script: bash scripts/android/setup_local_properties.sh
+
+      - name: Get Flutter packages
+        script: flutter packages pub get
+
+      - name: Flutter analyze
+        script: flutter analyze
+
+      - name: Flutter unit tests
+        script: flutter test
+        ignore_failure: true
+
+      - name: Build APK
+        script: flutter build apk
+
+      - name: Build AAB
+        script: flutter build appbundle
+
+      - name: Versioned name binaries
+        script: bash scripts/android/versioned_name_binaries.sh
+
+      - name: Release on github
+        script: bash scripts/release_on_github.sh
+
+    artifacts:
+      - build/**/outputs/apk/**/*.apk
+      - build/**/outputs/bundle/**/*.aab
+      - build/**/outputs/**/*-mapping.txt
+
+    publishing:
+      firebase:
+        firebase_token: $FIREBASE_TOKEN
+        android:
+          app_id: $FIREBASE_ANDROID_APP_ID
+          groups:
+            - all
+          # just upload apk because firebase app distribution use play console
+          # internal app sharing for app bundle in which case app need to be
+          # setup on play console and publish
+          artifact_type: 'apk'
