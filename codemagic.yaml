@@ -36,15 +36,15 @@ workflows:
 
       - name: Setup google_services.json
         script: |
-          PATH="$CM_BUILD_DIR/android/app/google_services.json"
-          echo $GOOGLE_SERVICES | base64 --decode >$PATH
-          cat $PATH
+          GOOGLE_SERVICES_PATH="$CM_BUILD_DIR/android/app/google_services.json"
+          echo $GOOGLE_SERVICES | base64 --decode > $GOOGLE_SERVICES_PATH
+          cat $GOOGLE_SERVICES_PATH
 
       - name: Setup firebase_options.dart
         script: |
-          PATH="$CM_BUILD_DIR/lib/firebase_options.dart"
-          echo $FIREBASE_OPTIONS | base64 --decode >$PATH
-          cat $PATH
+          FIREBASE_OPTIONS_PATH="$CM_BUILD_DIR/lib/firebase_options.dart"
+          echo $FIREBASE_OPTIONS | base64 --decode > $FIREBASE_OPTIONS_PATH
+          cat $FIREBASE_OPTIONS_PATH
 
       - name: Get Flutter packages
         script: flutter packages pub get
