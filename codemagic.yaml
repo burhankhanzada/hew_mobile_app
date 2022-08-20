@@ -34,6 +34,12 @@ workflows:
       - name: Setup local.properties
         script: bash scripts/android/setup_local_properties.sh
 
+      - name: Setup google_services.json
+        script: bash scripts/android/setup_google_services_json.sh
+
+      - name: Setup firebase_options.dart
+        script: bash scripts/flutter/setup_firebase_options_dart.sh
+
       - name: Get Flutter packages
         script: flutter packages pub get
 
