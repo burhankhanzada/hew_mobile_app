@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:spaces/spaces.dart';
 
+import '../../state/app_state.dart';
 import 'home_page.dart';
 
 class Header extends StatelessWidget {
@@ -9,6 +11,8 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userModel = context.read<AppState>().userModel;
+
     return Expanded(
       child: Column(
         children: [
@@ -36,7 +40,7 @@ class Header extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'User Name',
+                    userModel.displayName!,
                     style: Theme.of(context).textTheme.headline5?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
