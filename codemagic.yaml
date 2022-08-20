@@ -35,10 +35,16 @@ workflows:
         script: bash scripts/android/setup_local_properties.sh
 
       - name: Setup google_services.json
-        script: bash scripts/android/setup_google_services_json.sh
+        script: |
+          PATH="$CM_BUILD_DIR/android/app/google_services.json"
+          echo $GOOGLE_SERVICES | base64 --decode >$PATH
+          cat $PATH
 
       - name: Setup firebase_options.dart
-        script: bash scripts/flutter/setup_firebase_options_dart.sh
+        script: |
+          PATH="$CM_BUILD_DIR/lib/firebase_options.dart"
+          echo $FIREBASE_OPTIONS | base64 --decode >$PATH
+          cat $PATH
 
       - name: Get Flutter packages
         script: flutter packages pub get
