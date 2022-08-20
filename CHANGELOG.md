@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/burhankhanzada/hew_mobile_app/compare/v0.1.0...v0.1.1) (2022-08-20)
+
+
+### Bug Fixes
+
+* Fix missing minsdk ([7e361c0](https://github.com/burhankhanzada/hew_mobile_app/commit/7e361c0db91a0a0c016dd094c08e6554a519a563))
+
 ## [0.1.0](https://github.com/burhankhanzada/hew_mobile_app/compare/v0.0.1...v0.1.0) (2022-08-20)
 
 
