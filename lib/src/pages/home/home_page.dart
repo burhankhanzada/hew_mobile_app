@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'header.dart';
@@ -12,7 +13,18 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const Drawer(),
+      drawer: Drawer(
+        child: SafeArea(
+          child: Column(
+            children: [
+              ListTile(
+                title: const Text('Sign out'),
+                onTap: FirebaseAuth.instance.signOut,
+              ),
+            ],
+          ),
+        ),
+      ),
       body: Column(
         children: const [
           Header(),
