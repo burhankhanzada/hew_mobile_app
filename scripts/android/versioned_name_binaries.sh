@@ -21,7 +21,7 @@ function update_name {
 
     local from=$file_name
 
-    if [ $file_name == "mapping.txt" ]; then
+    if [ build -ne "debug" -a $file_name -eq "mapping.txt" ]; then
         to="$versioned_name-mapping.txt"
     else
         to=$versioned_name.$file_extension
