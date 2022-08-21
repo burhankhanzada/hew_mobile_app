@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/burhankhanzada/hew_mobile_app/compare/v0.1.1...v0.2.0) (2022-08-21)
+
+
+### Features
+
+* Fix and improve singin code and process ([297def2](https://github.com/burhankhanzada/hew_mobile_app/commit/297def26f14ae1df0ee106362bf627d5863871cd))
+
+
+### Bug Fixes
+
+* Fix lints warnings ([7cbae16](https://github.com/burhankhanzada/hew_mobile_app/commit/7cbae162899b55e3f433bc4f1c1a2565ec482599))
+
 ## [0.1.1](https://github.com/burhankhanzada/hew_mobile_app/compare/v0.1.0...v0.1.1) (2022-08-20)
 
 
