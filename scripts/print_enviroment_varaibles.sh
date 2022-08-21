@@ -1,5 +1,8 @@
 #!/bin/env bash
 
+set -ex
+printenv
+
 echo CM_TAG = $CM_TAG
 
 echo CM_BUILD_DIR = $CM_BUILD_DIR
