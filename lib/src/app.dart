@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:spaces/spaces.dart';
 
 import 'constants/color_constants.dart';
+import 'models/user_model.dart';
 import 'pages/home/home_page.dart';
 import 'pages/setup_profile_page.dart';
 import 'pages/sign_in_page.dart';
@@ -28,35 +30,42 @@ class App extends StatelessWidget {
         ),
         home: StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
-          builder: navigateAccordingToAuth,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return navigateAccordingToAuth(snapshot.data!);
+            }
+
+            return const SignInPage();
+          },
         ),
       ),
     );
   }
 
-  Widget navigateAccordingToAuth(
-    BuildContext context,
-    AsyncSnapshot<User?> snapshot,
-  ) {
-    if (snapshot.hasData) {
-      final user = snapshot.data;
+  Widget navigateAccordingToAuth(User user) {
+    return FutureBuilder<DataSnapshot>(
+      future: userRef(user.uid).get(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final datasnapshot = snapshot.data!;
 
-      final uid = user?.uid;
+          if (!datasnapshot.exists) {
+            return const SetupProfilePage();
+          } else {
+            debugPrint('user data exits in database');
 
-      userRef(uid!).get().then((value) {
-        if (value.exists) {
-          return const HomePage();
+            final map = datasnapshot.value! as Map<dynamic, dynamic>;
+
+            final userModel = UserModel.fromMap(map);
+
+            context.read<AppState>().userModel = userModel;
+
+            return const HomePage();
+          }
         }
 
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute<void>(
-            builder: (contex) => const SetupProfilePage(),
-          ),
-          (route) => false,
-        );
-      });
-    }
-
-    return const SignInPage();
+        return const SignInPage(isLoading: true);
+      },
+    );
   }
 }
