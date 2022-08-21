@@ -32,6 +32,9 @@ workflows:
       - name: Print enviroment varaibles
         script: bash scripts/print_enviroment_varaibles.sh
 
+      - name: Print debug keystore
+        script: bash scripts/android/print_debug_keystore_sha.sh
+
       - name: Setup local.properties
         script: bash scripts/android/setup_local_properties.sh
 
