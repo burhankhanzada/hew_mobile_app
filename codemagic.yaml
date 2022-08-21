@@ -4,6 +4,7 @@ workflows:
 
     environment:
       groups:
+        - keystore_credentials
         - github
         - firebase
 
@@ -34,7 +35,7 @@ workflows:
       - name: Setup local.properties
         script: bash scripts/android/setup_local_properties.sh
 
-      - name: Setup key properties
+      - name: Setup key.properties
         script: bash scripts/android/setup_key_properties.sh
 
       - name: Setup google_services.json
