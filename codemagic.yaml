@@ -30,7 +30,9 @@ workflows:
 
     scripts:
       - name: Print enviroment varaibles
-        script: bash scripts/print_enviroment_varaibles.sh
+        script: |
+          set -ex
+          printenv
 
       - name: Print debug keystore
         script: bash scripts/android/print_debug_keystore_sha.sh

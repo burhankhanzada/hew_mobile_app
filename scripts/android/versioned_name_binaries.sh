@@ -21,7 +21,7 @@ function update_name {
 
     local from=$file_name
 
-    if [ $build_mode -eq "release" -a $file_name -eq "mapping.txt" ]; then
+    if [ $build_mode == "release" -a $file_name == "mapping.txt" ]; then
         to="$versioned_name-mapping.txt"
     else
         to=$versioned_name.$file_extension
@@ -37,6 +37,6 @@ OUTPUTS=build/**/outputs
 update_name $OUTPUTS/apk/**/*.apk
 update_name $OUTPUTS/bundle/**/*.aab
 
-if [ $build_mode -eq "release" ]; then
+if [ $build_mode == "release" ]; then
     update_name $OUTPUTS/mapping/**/mapping.txt
 fi
