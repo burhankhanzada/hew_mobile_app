@@ -34,7 +34,7 @@ workflows:
           set -ex
           printenv
 
-      - name: Print debug keystore
+      - name: Setup and print keystores
         script: bash scripts/android/print_debug_keystore_sha.sh
 
       - name: Setup local.properties
