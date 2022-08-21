@@ -36,4 +36,7 @@ OUTPUTS=build/**/outputs
 
 update_name $OUTPUTS/apk/**/*.apk
 update_name $OUTPUTS/bundle/**/*.aab
-update_name $OUTPUTS/mapping/**/mapping.txt
+
+if [ build_mode -eq "release" ]; then
+    update_name $OUTPUTS/mapping/**/mapping.txt
+fi
