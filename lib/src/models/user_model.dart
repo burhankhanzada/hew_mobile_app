@@ -1,7 +1,12 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'dart:convert';
 
+import 'package:flutter/widgets.dart';
+
+@immutable
 class UserModel {
-  UserModel({
+  const UserModel({
     this.userId,
     this.userName,
     this.displayName,
@@ -19,10 +24,10 @@ class UserModel {
       phoneNumber: map['phoneNumber'],
     );
   }
-  String? userId;
-  String? userName;
-  String? displayName;
-  String? phoneNumber;
+  final String? userId;
+  final String? userName;
+  final String? displayName;
+  final String? phoneNumber;
 
   UserModel copyWith({
     String? userId,
