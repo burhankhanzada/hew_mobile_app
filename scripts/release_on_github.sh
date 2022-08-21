@@ -12,6 +12,6 @@ gh release upload $CM_TAG \
 build/**/outputs/apk/**/*.apk \
 build/**/outputs/bundle/**/*.aab
 
-if [ build -ne "debug" ]; then
+if [ build_mode -eq "release" ]; then
     gh release upload $CM_TAG build/**/outputs/mapping/**/*-mapping.txt
 fi
