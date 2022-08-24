@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/burhankhanzada/hew_mobile_app/compare/v0.2.0...v0.2.1) (2022-08-24)
+
+
+### Bug Fixes
+
+* Fix sign out after setup profile mkae aap crash ([11d1022](https://github.com/burhankhanzada/hew_mobile_app/commit/11d102298da9f5ac9fdb9588aa028b40a26414c0))
+
 ## [0.2.0](https://github.com/burhankhanzada/hew_mobile_app/compare/v0.1.1...v0.2.0) (2022-08-21)
 
 
