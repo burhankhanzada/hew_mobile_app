@@ -101,20 +101,18 @@ class _SignInPageState extends State<SignInPage> {
           debugPrint('verificationFailed');
         },
         codeSent: (verificationId, resendToken) {
-          debugPrint('codeSent');
           this.verificationId = verificationId;
           _isCodeSent = true;
           setIsLoading();
         },
       );
     } on FirebaseAuthException catch (e) {
-      debugPrint('Error code: ${e.code}');
-      debugPrint('Error: message: ${e.message}}');
+      debugPrint('verifyPhoneNumber error code: ${e.code}');
+      debugPrint('verifyPhoneNumber error message: ${e.message}}');
     }
   }
 
   Future<void> validateOTP() async {
-    debugPrint('validateOTP');
     final smsCode = _otpController.text;
 
     final credential = PhoneAuthProvider.credential(
@@ -125,8 +123,8 @@ class _SignInPageState extends State<SignInPage> {
     try {
       await _auth.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
-      debugPrint('Error code: ${e.code}');
-      debugPrint('Error: message: ${e.message}}');
+      debugPrint('signInWithCredential error code: ${e.code}');
+      debugPrint('signInWithCredential error message: ${e.message}}');
     }
   }
 }

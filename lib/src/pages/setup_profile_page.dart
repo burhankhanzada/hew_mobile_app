@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import '../models/user_model.dart';
 import '../state/app_state.dart';
 import '../utils/firebase_utils.dart';
-import 'home/home_page.dart';
 
 class SetupProfilePage extends StatefulWidget {
   const SetupProfilePage({super.key});
@@ -64,16 +63,11 @@ class _SetupProfilePageState extends State<SetupProfilePage> {
             userName: name.trim().replaceAll(' ', '').toLowerCase(),
           );
 
-          await userRef(uid).set(userModel.toMap());
+          await userRef().set(userModel.toMap());
 
           if (!mounted) return;
 
           context.read<AppState>().userModel = userModel;
-
-          await Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute<void>(builder: (contex) => const HomePage()),
-            (route) => false,
-          );
         },
       ),
     );

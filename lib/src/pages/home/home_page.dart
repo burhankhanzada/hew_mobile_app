@@ -19,7 +19,10 @@ class HomePage extends StatelessWidget {
             children: [
               ListTile(
                 title: const Text('Sign out'),
-                onTap: FirebaseAuth.instance.signOut,
+                onTap: () {
+                  // userRef().onValue.drain();
+                  FirebaseAuth.instance.signOut();
+                },
               ),
             ],
           ),

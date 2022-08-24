@@ -40,7 +40,7 @@ class Header extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    userModel.displayName!,
+                    userModel!.displayName!,
                     style: Theme.of(context).textTheme.headline5?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
